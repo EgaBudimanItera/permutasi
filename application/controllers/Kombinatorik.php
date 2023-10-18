@@ -26,16 +26,29 @@ class Kombinatorik extends CI_Controller {
 		$r=$this->input->get('nilai_r');
 		empty($n)||$n=="" || $n>7?$n=5:$n=$this->input->get('nilai_n');
 		empty($r)||$r=="" || $r>7?$r=5:$r=$this->input->get('nilai_r');
+		$s=0;
 		
-		$elements = range(1, $n); 
-		$permutations = $this->Generatepermutations($n,$r);
+
 		
-		$permutationsdetail = $this->generatePermutationsDetail($elements, $r);
+		if($r>$n){
+			$elements = range(1, $r); 
+			$permutations = $this->Generatepermutations($r,$n);
+		
+			$permutationsdetail = $this->generatePermutationsDetail($elements, $n);
+			$data['permutasi_label']="Permutasi P(".$r.",".$n.")";
+		}else{
+			$elements = range(1, $n); 
+			$permutations = $this->Generatepermutations($n,$r);
+		
+			$permutationsdetail = $this->generatePermutationsDetail($elements, $r);
+			$data['permutasi_label']="Permutasi P(".$n.",".$r.")";
+		}
+		
 		
 		$data['permutationsdetail'] = $permutationsdetail;
 		
 		$data['permutations'] = $permutations;
-		$data['permutasi_label']="Permutasi P(".$n.",".$r.")";
+		
 		
     $this->load->view('permutation_view', $data);
 		
