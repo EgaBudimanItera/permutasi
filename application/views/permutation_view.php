@@ -4,7 +4,8 @@
     <title>Permutations</title>
 </head>
 <body>
-    <form action="<?php echo site_url('kombinatorik/index');?>" method="get">
+    <form action="<?php echo site_url('kombinatorik/index');?>" 
+    method="get">
       <h3>Permutasi P(n,r)</h3>
       <div>
         Nilai n : <input type="text" name="nilai_n" id="">
@@ -19,12 +20,11 @@
       </div>
     </form>
     <h1><?=$permutasi_label?></h1>
-     <ol>
-        <?php foreach ($permutationsdetail as $permutation): ?>
-            <li>(<?php echo $permutation; ?>)</li>
+     
+        <?php $hasil="";foreach ($permutationsdetail as $permutation): ?>
+            
+        <?php $hasil.= "(".$permutation."),"?>
         <?php endforeach; ?>
-    </ol> 
-    
-    
+        <div style="width:700px"><?=$hasil;?></div>
 </body>
 </html>
